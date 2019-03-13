@@ -35,8 +35,8 @@ const apiHandlers = {
 
     let result = await dynamoService.get('led')
     if (result) {
-      let value = (result.Item)? ((result.Item.value)? 0:1) : 1
-      await dynamoService.set('led', 0)
+      let value = (result.Item && typeof result.Item.value === 'number')? ((result.Item.value)? 0:1) : 1
+      await dynamoService.set('led', value)
       return { status: '200 OK' }
     } else {
       return { status: '400 NOT GOOD' }
