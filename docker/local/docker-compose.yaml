@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  claudia: &claudia
+    image: node:8.11.3-alpine
+    working_dir: /home/node/app
+    volumes:
+      - ../../:/home/node/app
+    env_file:
+      - claudia/.env
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sh claudia.config.sh
+        npm install
+        chown -R ${SERVICE_PERMISSIONS} /home/node/app
+        npm ${YARN_COMMAND}
+        chown -R ${SERVICE_PERMISSIONS} /home/node/app
+
+  claudia_cmd:
+    <<: *claudia
+
+  claudia_api:
+    <<: *claudia
+    ports:
+      - "3000:3000"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sh claudia.config.sh
+        npm run local:api
+
+
+
