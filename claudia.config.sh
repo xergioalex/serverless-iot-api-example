@@ -17,6 +17,8 @@ EOF
 # Lambda environment config
 cat << EOF > config/environment.json
 {
-  "XERGIOALEX": "${XERGIOALEX}"
+  "DEBUG": "${DEBUG}",
+  "ENVIRONMENT": "${ENVIRONMENT}",
+  "DYNAMODB_TABLE_NAME": "${DYNAMODB_TABLE_NAME}"
 }
 EOF

@@ -26,11 +26,6 @@ services:
   claudia_cmd:
     <<: *claudia
 
-  claudia_deploy:
-    <<: *claudia
-    environment:
-      - DYNAMODB_ENDPOINT_URL=
-
   claudia_api:
     <<: *claudia
     ports:

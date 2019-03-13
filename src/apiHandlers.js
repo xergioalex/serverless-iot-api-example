@@ -16,12 +16,27 @@ const apiHandlers = {
     return result
   },
 
+  async ledOn(request) {
+    logger.log('> Processing "LED ON" request...')
+
+    await dynamoService.set('led', 1)
+    return { status: '200 OK' }
+  },
+
+  async ledOff(request) {
+    logger.log('> Processing "LED OFF" request...')
+
+    await dynamoService.set('led', 0)
+    return { status: '200 OK' }
+  },
+
   async ledToggle(request) {
     logger.log('> Processing "LED TOGGLE STATE" request...')
 
     let result = await dynamoService.get('led')
     if (result) {
-      await dynamoService.set('led', !result.Item.value)
+      let value = (result.Item)? ((result.Item.value)? 0:1) : 1
+      await dynamoService.set('led', 0)
       return { status: '200 OK' }
     } else {
       return { status: '400 NOT GOOD' }

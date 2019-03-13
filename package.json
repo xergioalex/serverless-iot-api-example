@@ -29,7 +29,6 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
-    "babel-runtime": "6.26.0",
     "clean-webpack-plugin": "0.1.19",
     "source-map-loader": "0.2.3",
     "uglifyjs-webpack-plugin": "1.2.7",
@@ -42,7 +41,7 @@
   "scripts": {
     "build": "webpack --mode production --progress",
     "build:watch": "webpack --mode production --progress --watch",
-    "create": "claudia create --name ${LAMBDA_NAME} --use-s3-bucket ${S3_CLAUDA_UPLOADS} --region us-east-1 --api-module dist/main --timeout 5 --set-env-from-json config/environment.json",
+    "create": "claudia create --name ${LAMBDA_NAME} --use-s3-bucket ${S3_CLAUDA_UPLOADS} --region us-east-1 --api-module dist/main --timeout 5 --policies config/dynamodb-policy.json --set-env-from-json config/environment.json",
     "update": "claudia update --use-s3-bucket ${S3_CLAUDA_UPLOADS} --set-env-from-json config/environment.json",
     "schedule": "claudia add-scheduled-event --event config/schedule.json --name ${LAMBDA_EVENT_NAME} --rate '5 minutes'",
     "destroy": "claudia destroy",

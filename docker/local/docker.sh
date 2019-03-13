@@ -48,15 +48,15 @@ elif [[ "$1" == "local:api:watch" ]]; then
 elif [[ "$1" == "deploy" ]]; then
     utils.printer "Build lambda"
     export YARN_COMMAND="run build"
-    docker-compose build claudia_deploy
-    docker-compose up claudia_deploy
+    docker-compose build claudia_cmd
+    docker-compose up claudia_cmd
     if [[ ! -f "../../claudia.json" ]]; then
         export YARN_COMMAND="run create"
     else
         export YARN_COMMAND="run update"
     fi
     utils.printer "Deploy lambda"
-    docker-compose up claudia_deploy
+    docker-compose up claudia_cmd
 elif [[ "$1" == "add" ]]; then
     if [[ "$3" == "dev" ]]; then
         export YARN_COMMAND="install --save $2 --save-dev"
