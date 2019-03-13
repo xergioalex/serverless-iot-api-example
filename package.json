@@ -12,6 +12,7 @@
     "url": "https://github.com/xergioalex/serverles-twitter-bot.git"
   },
   "dependencies": {
+    "aws-sdk": "2.344.0",
     "minimal-request-promise": "^1.5.0",
     "twit": "^2.2.11",
     "source-map-support": "0.5.8",
@@ -46,6 +47,13 @@
     "schedule": "claudia add-scheduled-event --event config/schedule.json --name ${LAMBDA_EVENT_NAME} --rate '5 minutes'",
     "destroy": "claudia destroy",
     "invoke": "claudia test-lambda",
+    "dynamodb:create": "aws dynamodb create-table --table-name ${DYNAMODB_TABLE_NAME} --attribute-definitions AttributeName=device,AttributeType=S --key-schema AttributeName=device,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1 --query TableDescription.TableArn --output text",
+    "dynamodb:delete": "aws dynamodb delete-table --table-name ${DYNAMODB_TABLE_NAME}",
+    "dynamodb:local:create": "aws dynamodb create-table --table-name ${DYNAMODB_TABLE_NAME} --endpoint-url ${DYNAMODB_ENDPOINT_URL} --attribute-definitions AttributeName=device,AttributeType=S --key-schema AttributeName=device,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1 --query TableDescription.TableArn --output text",
+    "dynamodb:local:create:test": "aws dynamodb create-table --table-name test --endpoint-url ${DYNAMODB_ENDPOINT_URL} --attribute-definitions AttributeName=device,AttributeType=S --key-schema AttributeName=device,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1 --query TableDescription.TableArn --output text",
+    "dynamodb:local:delete": "aws dynamodb delete-table --table-name ${DYNAMODB_TABLE_NAME} --endpoint-url ${DYNAMODB_ENDPOINT_URL}",
+    "dynamodb:local:delete:test": "aws dynamodb delete-table --table-name test --endpoint-url ${DYNAMODB_ENDPOINT_URL}",
+    "dynamodb:local:list": "aws dynamodb list-tables --endpoint-url ${DYNAMODB_ENDPOINT_URL}",
     "local:api": "claudia-local-api --api-module dist/main --port=3000 | bunyan --output short",
     "local:api:watch": "onchange -d 0 -v 'dist/main.js' -- docker restart -t=0 xergioalexiotapi_claudia_api_1"
   }

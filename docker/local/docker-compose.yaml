@@ -1,8 +1,13 @@
 version: '3'
 
+volumes:
+  dynamodb_data: {}
+
 services:
   claudia: &claudia
-    image: node:8.11.3-alpine
+    build:
+      context: .
+      dockerfile: ./claudia/Dockerfile
     working_dir: /home/node/app
     volumes:
       - ../../:/home/node/app
@@ -21,6 +26,11 @@ services:
   claudia_cmd:
     <<: *claudia
 
+  claudia_deploy:
+    <<: *claudia
+    environment:
+      - DYNAMODB_ENDPOINT_URL=
+
   claudia_api:
     <<: *claudia
     ports:
@@ -31,6 +41,12 @@ services:
       - |
         sh claudia.config.sh
         npm run local:api
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    volumes:
+      - dynamodb_data:/home/dynamodblocal
+    command: '-Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -dbPath /home/dynamodblocal'
 
 
 
