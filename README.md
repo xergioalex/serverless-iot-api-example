@@ -1,8 +1,13 @@
-# XergioAleX Twitter Bot
+# Iot Basic Serverless API
 ---
 
-This script allow test DailyBot bot availability.
+An experimental api using serverless to control a LED ligth.
 
+Take a look to this another related projects:
+- [Basic ligth bulb web application](https://github.com/xergioalex/serverless-ligth-bulb)
+- [Basic iot http client using NODEMCU and esp2866 wifi module](https://github.com/xergioalex/serverless-iot-api-example)
+
+![Infrastructure design](infrastructure-design.png)
 
 ## Docker
 
@@ -77,7 +82,7 @@ Follow nexts steps to complete all empty var values.
 ### 2. Create IAM user
 
 - Go to IAM: https://console.aws.amazon.com/iam/home?region=us-east-1#/users
-- Recommended name: `{your_username_or_identifier}`_dailybot_rover_serverless
+- Recommended name: `{your_username_or_identifier}`_serverless
 - Create user with existing policies
   - AWSLambdaFullAccess
   - AmazonDynamoDBFullAccess
