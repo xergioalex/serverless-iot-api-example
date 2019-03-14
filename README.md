@@ -3,11 +3,12 @@
 
 An experimental api using serverless to control a LED ligth.
 
+![Infrastructure design](infrastructure-design.png)
+
 Take a look to this another related projects:
 - [Basic ligth bulb web application](https://github.com/xergioalex/serverless-ligth-bulb)
 - [Basic iot http client using NODEMCU and esp2866 wifi module](https://github.com/xergioalex/serverless-iot-api-example)
 
-![Infrastructure design](infrastructure-design.png)
 
 ## Docker
 
