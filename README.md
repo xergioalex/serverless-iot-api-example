@@ -7,7 +7,7 @@ An experimental api using serverless to control a LED ligth.
 
 Take a look to this another related projects:
 - [Basic ligth bulb web application](https://github.com/xergioalex/serverless-ligth-bulb)
-- [Basic iot http client using NODEMCU and esp2866 wifi module](https://github.com/xergioalex/serverless-iot-api-example)
+- [Basic iot http client using NODEMCU and esp2866 wifi module](https://github.com/xergioalex/iot-basic-http-client)
 
 
 ## Docker
@@ -50,12 +50,12 @@ Files with environment variables `.env` and other config files mentioned below a
 **Notes:**
 
 - Params between {} are optional, except {}*.
-- `{command}` available: build|build:watch|create|update|test|schedule|destroy*.
+- `{command}` available: build|build:watch|create|update|destroy|invoke|dinamodb:create|dinamodb:delete|dinamodb:local:create|dynamodb:local:create:test|dynamodb:local:delete|dynamodb:local:list|local:api|local:api:watch*.
 - Service names available: `claudia`
 
 The following describes each of the parameters::
 
-**Usage: docker.sh [{command}|deploy|help]**
+**Example Usage: docker.sh [{command}|deploy|help]**
 
 * `{command}` --> Run services with command script
 * `deploy` --> Build && deploy lambda

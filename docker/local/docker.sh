@@ -127,11 +127,10 @@ elif [[ "$1" != "help" ]]; then
     docker-compose up claudia_cmd
 else
     utils.printer "Params between {} are optional"
-    utils.printer "{command} available: build|build:watch|create|update|destroy|invoke|test"
+    utils.printer "{command} available: build|build:watch|create|update|destroy|invoke|dinamodb:create|dinamodb:delete|dinamodb:local:create|dynamodb:local:create:test|dynamodb:local:delete|dynamodb:local:list|local:api|local:api:watch"
     utils.printer ""
-    utils.printer "Usage: docker.sh [{command}|deploy|help]"
+    utils.printer "Example Usage: docker.sh [{command}|deploy|help]"
     echo -e "{command} --> Run services with command script"
     echo -e "deploy --> Build && deploy lambda"
     echo -e "help --> Show menu options"
 fi
-
